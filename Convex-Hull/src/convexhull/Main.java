@@ -33,7 +33,7 @@ public class Main {
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
                     if (image[y][x] == pixelObject) {
-                        System.out.println("y=" + y + "\t" + "x=" + x);
+
                         writer.println("y=" + y + "\t" + "x=" + x);
                         Point p = new Point();
                         p.y = y;
@@ -46,9 +46,8 @@ public class Main {
             ArrayList<Point> result = convex.execute(points);
 
             for (Point p : result) {
-                System.out.println("y=" + p.y + "\tx=" + p.x);
                 writer.println("y=" + p.y + "\tx=" + p.x);
-                image[p.y][p.x] = 255;
+                image[p.y][p.x] = pixelObject;
             }
             writer.close(); 
         }

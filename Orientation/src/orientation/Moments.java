@@ -1,9 +1,12 @@
 package orientation;
 
-/*------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------
+ Computing Central Moments for multiple Regions within a image
+ Written by: Kevin Duraj
+--------------------------------------------------------------------------------------------------*/
 public class Moments {
 
-    public int REGION = 1;
+    private int REGION = 0;
     
     /*--------------------------------------------------------------------------------------------*/
     public double moment(int[][] image, int p, int q) {
@@ -23,13 +26,14 @@ public class Moments {
         return Mpq;
     }
     /*--------------------------------------------------------------------------------------------*/
-    public double centralMoment(int[][]image, int p, int q) {
+    public double centralMoment(int region, int[][]image, int p, int q) {
         
+        this.REGION = region;        
         double cMpq = 0.0;        
         int height = image.length;
         int width  = image[0].length;
         
-        double m00 = moment(image, 0, 0); // = region area
+        double m00 = moment(image, 0, 0); //m00 = region area
         double xCtr = moment(image, 1, 0) / m00;
         double yCtr = moment(image, 0, 1) / m00;
         
