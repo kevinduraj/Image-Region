@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
@@ -22,14 +23,18 @@ public class Main {
         height = image.length;
         width = image[0].length;
 
+        
         /* for each 4 different regions in the object */
         for (int pixelObject = 1; pixelObject < 5; pixelObject++) {
-        
+            
+            PrintWriter writer = new PrintWriter("src/files/convex-hull-"+pixelObject+".txt", "UTF-8");
+            
             /*---- Left to Right ----*/
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
                     if (image[y][x] == pixelObject) {
                         System.out.println("y=" + y + "\t" + "x=" + x);
+                        writer.println("y=" + y + "\t" + "x=" + x);
                         Point p = new Point();
                         p.y = y;
                         p.x = x;
@@ -42,8 +47,10 @@ public class Main {
 
             for (Point p : result) {
                 System.out.println("y=" + p.y + "\tx=" + p.x);
+                writer.println("y=" + p.y + "\tx=" + p.x);
                 image[p.y][p.x] = 255;
             }
+            writer.close(); 
         }
 
         points.clear();
