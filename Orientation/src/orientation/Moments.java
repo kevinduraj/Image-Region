@@ -3,7 +3,7 @@ package orientation;
 /*------------------------------------------------------------------------------------------------*/
 public class Moments {
 
-    private final int BACKGROUND = 0;
+    public int REGION = 1;
     
     /*--------------------------------------------------------------------------------------------*/
     public double moment(int[][] image, int p, int q) {
@@ -14,7 +14,7 @@ public class Moments {
         
         for(int j=0; j < height; j++) {
             for(int i=0; i<width; i++) {
-                if(image[i][j] != BACKGROUND) {
+                if(image[j][i] == REGION) {
                     Mpq += Math.pow(i,p) * Math.pow(j,q);
                 }
             }
@@ -35,19 +35,12 @@ public class Moments {
         
         for(int j=0; j<height; j++) {
             for(int i=0; i<width; i++) {
-                if(image[i][j] != BACKGROUND) {
-                    cMpq += Math.pow(i - xCtr, p) * Math.pow(i - yCtr, q);                    
+                if(image[j][i] == REGION) {
+                    cMpq += Math.pow(i - xCtr, p) * Math.pow(j - yCtr, q);                    
                 }
             }
         }
         return cMpq;
-    }
-    /*--------------------------------------------------------------------------------------------*/
-    public double normalCentralMoment(int[][]image, int p, int q) {
-        
-        double m00 = moment(image, 0, 0);
-        double norm = Math.pow(m00, (double)(p+q+2)/2);
-        return centralMoment(image, p, q) / norm;
     }
     /*--------------------------------------------------------------------------------------------*/
     

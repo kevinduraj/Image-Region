@@ -17,8 +17,24 @@ public class Main {
                 
        int[][] image = ImageRead("src/images/assignment05.png");
        Moments moments = new Moments();
-       System.out.println(moments.centralMoment(image, 0, 0));
-        
+       System.out.println("u00 = " + moments.centralMoment(image, 0, 0));
+       
+       System.out.println("u01 = 0 = " + moments.centralMoment(image, 0, 1));       
+       System.out.println("u10 = 0 = " + moments.centralMoment(image, 1, 0));
+       
+       System.out.println("u11 = " + moments.centralMoment(image, 1, 1));
+       System.out.println("u20 = " + moments.centralMoment(image, 2, 0));
+       System.out.println("u02 = " + moments.centralMoment(image, 0, 2));
+       
+       double u11 = moments.centralMoment(image, 1, 1);
+       double u20 = moments.centralMoment(image, 2, 0);
+       double u02 = moments.centralMoment(image, 0, 2);
+       
+       double theta = 0.5 * Math.atan2(2.0 * u11, u20 - u02);
+       
+       System.out.format("\nOrientation %.3f ... PI = %.3f\n", theta, theta*180.0/Math.PI);
+
+       
     }
     /*--------------------------------------------------------------------------------------------*/
 
